@@ -156,25 +156,43 @@ function showNotification(message, color = "#077b32") {
 
 // ✅ Checkout Order via WhatsApp
 function checkoutOrder() {
-  let totalAmount = basket
-    .map((x) => {
-      let { id, item } = x;
-      let search = shopItemsData.find((y) => y.id === id) || {};
-      return item * search.price;
-    })
-    .reduce((x, y) => x + y, 0);
-
-  if (totalAmount < 1000) {
-    showNotification("⚠️ You have to order minimum ₹1000.", "#e63946");
-    window.open(
-      `https://wa.me/${storeWhatsApp}?text=Hello! My order is below ₹1000. Please suggest more items.`,
-      "_blank"
-    );
-  } else {
-    showNotification("✅ Thank you for shopping with us!");
-    window.open(
-      `https://wa.me/${storeWhatsApp}?text=Hello! I want to confirm my order. Total: ₹${totalAmount}`,
-      "_blank"
-    );
+  if (basket.length === 0) {
+    showNotification("⚠️ Your cart is empty!", "#e63946");
+    return;
   }
+
+  // Build order details
+  let orderText = "🛒 My Order:\n\n";
+  let totalAmount = 0;
+
+  basket.forEach((x, index) => {
+    let { id, item } = x;
+    let product = shopItemsData.find(p => p.id === id) || {};
+    let price = product.price || 0;
+    let mrp = product.mrp || price;
+    let name = product.name || "Item";
+
+    let discount = mrp && mrp > price ? Math.round(((mrp - price) / mrp) * 100) : 0;
+    let itemTotal = item * price;
+    totalAmount += itemTotal;
+
+    orderText += `${index + 1}. ${name}\n   Qty: ${item}\n   Price: ₹${price}  ${mrp > price ? `(M.R.P: ₹${mrp}, ${discount}% off)` : ""}\n   Total: ₹${itemTotal}\n\n`;
+  });
+
+  orderText += `💰 Total Amount: ₹${totalAmount}`;
+
+  // Minimum order check
+  if (totalAmount < 5000) {
+    showNotification("⚠️ You have to order minimum ₹5000.", "#e63946");
+    orderText = `Hello! My order is below ₹5000. Please suggest more items.\n\n` + orderText;
+  } else {
+    orderText = `Hello! I want to confirm my order:\n\n` + orderText;
+    showNotification("✅ Thank you for shopping with us!");
+  }
+
+  // Encode text for WhatsApp link
+  const encodedText = encodeURIComponent(orderText);
+
+  // Open WhatsApp
+  window.open(`https://wa.me/${storeWhatsApp}?text=${encodedText}`, "_blank");
 }
