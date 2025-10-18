@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Store</title>
+  <link rel="stylesheet" href="src/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+  <div class="navbar">
+    <a href="index.html">
+      <h2>Mobile Store</h2>
+    </a>
+
+    <a href="cart.html">
+      <div class="cart">
+        <i class="bi bi-cart2"></i>
+        <div id="cartAmount" class="cartAmount">0</div>
+      </div>
+    </a>
+
+  </div>
+
+  <div id="label" class="text-center"></div>
+
+  <div class="shopping-cart" id="shopping-cart"></div>
+  <!-- <div class="text-center">
+    <button onclick="checkoutOrder()" class="checkout-btn">Checkout</button>
+  </div> -->
+
+  <!-- Notification Popup -->
+  <div id="notification" class="notification hidden">
+    <p id="notification-text"></p>
+  </div>
+
+</body>
+<!-- 🦶 Footer -->
+  <footer class="footer">
+    <div class="footer-left">
+      <p id="dateTime"></p>
+    </div>
+
+    <div class="footer-center">
+      <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
+      <a href="https://wa.me/919000000000" target="_blank"><i class="bi bi-whatsapp"></i></a>
+      <a href="https://youtube.com" target="_blank"><i class="bi bi-youtube"></i></a>
+      <span class="visitors">👁️:<span id="visitorCount">1</span></span>
+    </div>
+
+    <div class="footer-right">
+      📍 Asna, Bankura
+    </div>
+  </footer>
+  <!-- Floating Up Arrow -->
+  <button id="goTopBtn" title="Go to top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+<script src="src/Data.js"></script>
+<script src="src/cart.js"></script>
+<script>
+    // 🕒 Date and Time
+    function updateDateTime() {
+      const now = new Date();
+      const formatted = now.toLocaleString();
+      document.getElementById("dateTime").innerText = formatted;
+    }
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+
+    // 👁️ Visitor Count (stored locally)
+    let count = localStorage.getItem("visitorCount") || 25;
+    document.getElementById("visitorCount").innerText = count;
+    count++;
+    localStorage.setItem("visitorCount", count);
+
+    const goTopBtn = document.getElementById("goTopBtn");
+
+    // Scroll to top
+    goTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    
+    // Show button only after scrolling
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 200) {
+        goTopBtn.style.display = "flex";
+        goTopBtn.classList.add("show");
+      } else {
+        goTopBtn.classList.remove("show");
+        goTopBtn.style.display = "none";
+      }
+    });
+    
+    // Draggable functionality
+    let isDragging = false, offsetX, offsetY;
+    
+    goTopBtn.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      offsetX = e.clientX - goTopBtn.getBoundingClientRect().left;
+      offsetY = e.clientY - goTopBtn.getBoundingClientRect().top;
+      goTopBtn.style.cursor = "grabbing";
+    });
+    
+    document.addEventListener("mouseup", () => {
+      isDragging = false;
+      goTopBtn.style.cursor = "grab";
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      goTopBtn.style.left = e.clientX - offsetX + "px";
+      goTopBtn.style.top = e.clientY - offsetY + "px";
+    });
+
+  </script>
+
+</html>

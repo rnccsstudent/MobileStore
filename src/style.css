@@ -1,0 +1,561 @@
+/**
+* ! Changing default styles of the browser
+**/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin-bottom: 100px;
+  overflow-y: scroll;
+}
+
+i {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/**
+* ! Navbar STyles are here
+**/
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #0f172a;
+  color: white;
+  padding: 25px 60px;
+  margin-bottom: 30px;
+}
+
+.cart {
+  position: relative;
+  background-color: #fff;
+  color: #0f172a;
+  font-size: 30px;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.cartAmount {
+  position: absolute;
+  top: -15px;
+  right: -10px;
+  font-size: 16px;
+  background-color: red;
+  color: white;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+/**
+* ! Shop items styles are here
+**/
+
+.shop {
+  display: grid;
+  grid-template-columns: repeat(4, 223px);
+  gap: 30px;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+@media (max-width: 1000px) {
+  .shop {
+    grid-template-columns: repeat(2, 223px);
+  }
+}
+
+@media (max-width: 500px) {
+  .shop {
+    grid-template-columns: repeat(1, 223px);
+  }
+}
+
+.item {
+  border: 2px solid #0f172a;
+  border-radius: 4px;
+}
+.item img {
+  width: 100%;
+  border-radius: 2px 2px 0 0;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+}
+
+.price-quantity {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* gap: 8px; */
+  /* align-items: center; */
+  /* flex-wrap: nowrap; */
+  /* text-decoration: line-through; */
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  font-size: 16px;
+}
+
+.bi-dash-lg {
+  color: red;
+}
+
+.bi-plus-lg {
+  color: green;
+}
+
+/**
+* ! style rules for label and some buttons
+**/
+
+.text-center {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.HomeBtn,
+.checkout,
+.removeAll {
+  background-color: #0f172a;
+  color: white;
+  border: none;
+  padding: 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.checkout {
+  background-color:  #28a745;
+}
+.removeAll {
+  background-color: #dc3545;
+}
+/* Deep colors on click */
+.checkout:active {
+  background-color: #1e7e34; /* deeper green */
+}
+.removeAll:active {
+  background-color: #b02a37; /* deeper red */
+}
+.bi-x-lg {
+  color: red;
+  font-weight: bold;
+}
+
+/**
+* ! style rules for shopping-cart
+**/
+
+.shopping-cart {
+  display: grid;
+  grid-template-columns: repeat(1, 320px);
+  justify-content: center;
+  gap: 15px;
+}
+
+/**
+* ! style rules for cart-item
+**/
+
+.cart-item {
+  border: 2px solid #0f172a;
+  border-radius: 5px;
+  display: flex;
+}
+
+.title-price-x {
+  width: 195px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 2px solid red; */
+}
+
+.title-price {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-item-price {
+  background-color: #0f172a;
+  color: white;
+  border-radius: 4px;
+  padding: 3px 6px;
+}
+
+/* Notification popup style */
+.notification {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #0f172a;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+  z-index: 1000;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notification.hidden {
+  display: none;
+}
+
+/* Search Bar Style */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  gap: 8px;
+}
+
+.search-bar input {
+  width: 60%;
+  max-width: 400px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.search-bar input:focus {
+  border-color: #0f172a;
+  box-shadow: 0 0 5px rgba(7, 123, 50, 0.5);
+}
+
+.search-bar button {
+  background-color: #0f172a;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.search-bar button:hover {
+  background-color: #055d26;
+}
+
+/* ===== Fixed Footer ===== */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #0f172a; /* 🟦 Same as navbar dark blue tone */
+  color: #e2e8f0; /* Light text for contrast */
+  display: flex;
+  /* justify-content: space-between; */
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px;
+  font-size: 14px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.footer a {
+  color: #e2e8f0;
+  margin: 0 8px;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #055d26; /* Light cyan hover like modern UI */
+}
+
+.footer-center {
+  /* display: flex; */
+  align-items: center;
+  /* gap: 10px; */
+}
+.visitors {
+  /* margin-left: 15px; */
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+#goTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 30px;
+  height: 30px;
+  background: #0f172a; /* Your desired background color */
+  color: #ffffff; /* Arrow color */
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: grab;
+  z-index: 999;
+  display: none; /* hidden initially */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+/* Pulsing glow on hover */
+/* #goTopBtn.show {
+  animation: pulse 1.5s infinite;
+} */
+
+#goTopBtn:hover {
+  transform: scale(1.1);
+  /* box-shadow: 0 0 12px #055d26; */
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 5px #055d26;
+  }
+  50% {
+    box-shadow: 0 0 12px #055d26;
+  }
+  100% {
+    box-shadow: 0 0 5px #055d26;
+  }
+}
+.shop-container {
+  position: relative; /* needed for absolute positioning of button */
+}
+
+#loadMoreBtn {
+  position: absolute; /* relative to shop-container */
+  bottom: 10px;       /* small spacing from bottom */
+  right: 10px;        /* small spacing from right */
+  background-color: #0f172a;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 10;        /* make sure it's above other content */
+  transition: 0.3s ease;
+}
+
+#loadMoreBtn:hover {
+  background-color: #055d26;
+}
+
+.sort-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.sort-container select {
+  margin-left: 8px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.mrp {
+  font-size: 0.7em;
+  color: #888;
+  margin-left: 8px;
+} 
+.mrp s {
+  color: #888;
+}
+.desc {
+  font-size: 0.9em;
+  color: #555;
+  margin: 4px 0 8px 0;
+}
+
+/* .price-quantity {
+  display: flex;
+  align-items: center; /* vertically center if different font sizes 
+  gap: 8px; space between current price and MRP 
+  flex-wrap: nowrap; prevent wrapping to next line 
+} */
+
+/* .price-quantity .mrp s {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 0.8em;
+} */
+
+/* ==============================
+   RESPONSIVE DESIGN
+============================== */
+@media (max-width: 768px) {
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .store-title {
+    font-size: 1.2rem;
+  }
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    font-size: 13px;
+    gap: 10px;
+  }
+  .search-bar {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 10px;
+  }
+  .search-bar input {
+    width: 70%;
+    max-width: none;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .search-bar button {
+    font-size: 14px;
+    padding: 8px 12px;
+    white-space: nowrap; 
+  }
+
+  /* ✅ Sort dropdown responsive */
+  .sort-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 6px;
+    font-size: 14px;
+    margin: 10px 0;
+    padding: 0 10px;
+  }
+
+  .sort-container select {
+    font-size: 14px;
+    padding: 6px 8px;
+    width: auto;
+    max-width: 150px;
+  }
+   .navbar {
+    flex-direction: row;          /* keep them side-by-side */
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;           /* smaller padding for mobile */
+  }
+
+  .navbar h2 {
+    font-size: 20px;              /* slightly smaller title */
+  }
+
+  .cart {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: #0f172a;
+    font-size: 28px;
+    padding: 5px;
+    border-radius: 4px;
+  }
+
+  .cartAmount {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 12px;
+    background-color: red;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+  }
+   /* ⬇️ Load More button centered at bottom */
+  #loadMoreBtn {
+    display: block;
+    margin-left: 100px;
+    margin-right: auto;
+    position: relative;
+    left: 37px;
+    text-align: center;
+    width: fit-content;
+  }
+  .title-price-x {
+    display: flex;
+    width: 100%; /* take full width of container */
+    gap: 10px; /* optional spacing between title and price */
+  }
+
+  .title-price-x .title {
+    font-size: 0.9em; /* smaller title */
+    white-space: nowrap; /* prevent breaking to next line */
+    overflow: hidden;   /* hide overflow */
+    text-overflow: ellipsis; /* add ... if title too long */
+  }
+
+  .title-price-x .price {
+    font-size: 0.9em; /* slightly smaller price */
+    font-weight: bold; 
+    white-space: nowrap;
+  }
+}
+
+
+@media (max-width: 400px) {
+  .navbar {
+    font-size: 14px;
+  }
+
+  .footer {
+    font-size: 12px;
+  }
+
+  .item img {
+    height: 180px;
+  }
+
+  .price-quantity h2 {
+    font-size: 1em;
+  }
+
+  .desc {
+    font-size: 0.8em;
+  }
+}

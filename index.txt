@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clothing Store</title>
+  <link rel="stylesheet" href="src/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+  <div class="navbar">
+    <a href="index.html">
+      <h2>Clothing Store</h2>
+    </a>
+
+    <a href="cart.html">
+      <div class="cart">
+        <i class="bi bi-cart2"></i>
+        <div id="cartAmount" class="cartAmount">0</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- 🔍 Search Bar -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search for items...">
+    <button onclick="searchItem()"><i class="bi bi-search"></i></button>
+  </div>
+
+  <!-- 🛍️ Shop Container -->
+  <div class="shop" id="shop"></div>
+
+  <!-- 🦶 Footer -->
+  <footer class="footer">
+    <div class="footer-left">
+      <p id="dateTime"></p>
+    </div>
+
+    <div class="footer-center">
+      <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
+      <a href="https://wa.me/919000000000" target="_blank"><i class="bi bi-whatsapp"></i></a>
+      <a href="https://youtube.com" target="_blank"><i class="bi bi-youtube"></i></a>
+      <span class="visitors">👁️ Visitors: <span id="visitorCount">1</span></span>
+    </div>
+
+    <div class="footer-right">
+      📍 Asna, Bankura
+    </div>
+  </footer>
+
+  <script src="src/Data.js"></script>
+  <script src="src/main.js"></script>
+
+  <script>
+    // 🕒 Date and Time
+    function updateDateTime() {
+      const now = new Date();
+      const formatted = now.toLocaleString();
+      document.getElementById("dateTime").innerText = formatted;
+    }
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+
+    // 👁️ Visitor Count (stored locally)
+    let count = localStorage.getItem("visitorCount") || 25;
+    document.getElementById("visitorCount").innerText = count;
+    count++;
+    localStorage.setItem("visitorCount", count);
+  </script>
+</body>
+</html>
